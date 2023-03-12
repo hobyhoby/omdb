@@ -1,0 +1,36 @@
+import { Component } from "../core/heropy";
+
+export default class TheHeader extends Component {
+  constructor() {
+    super({
+      tagName: "header",
+      state: {
+        menus: [
+          {
+            name: "Search",
+            href: "#/",
+          },
+          {
+            name: "Movie",
+            href: "#/movie?id=tt4520988",
+          },
+          {
+            name: "About",
+            href: "#/about",
+          },
+        ],
+      },
+    });
+  }
+
+  render() {
+    this.el.innerHTML = /* html */ `
+      <a href="#/" class="logo"><span>OMDbAPI</span>.COM</a>
+      <nav>
+        <ul>
+
+        </ul>
+      </nav>
+    `;
+  }
+}
