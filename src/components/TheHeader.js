@@ -21,6 +21,10 @@ export default class TheHeader extends Component {
         ],
       },
     });
+
+    window.addEventListener("popstate", () => {
+      this.render();
+    });
   }
 
   render() {
@@ -28,9 +32,27 @@ export default class TheHeader extends Component {
       <a href="#/" class="logo"><span>OMDbAPI</span>.COM</a>
       <nav>
         <ul>
+          ${this.state.menus
+            .map((menu) => {
+              const href = menu.href.split("?")[0];
+              const hash = location.hash.split("?")[0];
+              const isAcitve = href === hash;
 
+              return /* html */ `
+              <li>
+                <a class="${isAcitve ? "active" : ""}" 
+                  href="${menu.href}">
+                  ${menu.name}
+                </a>
+              </li>
+            `;
+            })
+            .join("")}
         </ul>
       </nav>
+      <a href="#/about" class="user">
+        <img src="https://heropy.blog/css/images/logo.png" alt="User">
+      </a>
     `;
   }
 }
